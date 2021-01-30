@@ -2,3 +2,5 @@
 server/build/
 
 server/node_modules/
+
+mocks.zip
