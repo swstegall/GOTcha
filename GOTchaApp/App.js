@@ -1,21 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
+import HomeScreen from "./screens/HomeScreen";
+import BattleScreen from "./screens/BattleScreen";
+import ScanScreen from "./screens/ScanScreen";
+import PurchaseScreen from "./screens/PurchaseScreen";
+import SocialScreen from "./screens/SocialScreen";
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName={"Home"}>
+          <Drawer.Screen name="Home" component={HomeScreen} />
+          <Drawer.Screen name="Battle" component={BattleScreen} />
+          <Drawer.Screen name="Scan" component={ScanScreen} />
+          <Drawer.Screen name="Purchase" component={PurchaseScreen} />
+          <Drawer.Screen name="Social" component={SocialScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
