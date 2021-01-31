@@ -3,8 +3,16 @@ import { View, Text, StyleSheet } from "react-native";
 
 const Battlefield = ({fieldInformation, setSquare}) => {
     const {
-        fieldPattern
+        fieldPattern,
+        attackState
     } = fieldInformation;
+
+    const styleAttackState = (x, y) => {
+        if (attackState[y][x] === 1) {
+            return ((x + y) % 2 == 0)? {backgroundColor: "red"} : {backgroundColor: "#ffb6c1"}
+        }
+        return {}
+    }
 
     return (
         <View style={styles.drawField}>
@@ -13,10 +21,12 @@ const Battlefield = ({fieldInformation, setSquare}) => {
                     row.map((spot, columnIndex) => {
                         let backgroundTemp = ((rowIndex + columnIndex) % 2 == 0)? "gray" : "white";
                         let dynamicTopMargin = (rowIndex > 1)? 50: 0;
-
+                        let attackStyle = styleAttackState(columnIndex, rowIndex);
                         return (
-                            <View onTouchStart={() => setSquare(columnIndex, rowIndex)} key={columnIndex} style={[styles.drawSpot, {backgroundColor: backgroundTemp, marginTop: dynamicTopMargin}]}>
-                                <Text style={styles.spotText}>{spot}</Text>
+                            <View onTouchStart={() => setSquare(columnIndex, rowIndex)} key={columnIndex} style={[styles.drawSpot, {backgroundColor: backgroundTemp, marginTop: dynamicTopMargin}, attackStyle]}>
+                                <Text style={[styles.spotText]}>{spot[2]}</Text>
+                                <Text style={(spot !== "")?styles.drawStatAttackToken:{}}>{spot[3]}</Text>
+                                <Text style={(spot !== "")?styles.drawStatDefenseToken:{}}>{spot[4]}</Text>
                             </View> 
                         )
                     })
@@ -46,13 +56,28 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         width: "25%",
         height: "100%",
-
-        justifyContent: "center"
     },
     spotText: {
         alignSelf: "center",
         fontSize: 40,
-    }
+    },
+    drawStatAttackToken: {
+        position: "absolute",
+        borderRadius: 30,
+        width: "20%",
+        bottom: 0,
+        textAlign: "center",
+        backgroundColor: "red"
+    },
+    drawStatDefenseToken: {
+        position: "absolute",
+        borderRadius: 30,
+        width: "20%",
+        bottom: "0%",
+        textAlign: "center",
+        right: 0,
+        backgroundColor: "cyan"
+    },
   }
 )
 
