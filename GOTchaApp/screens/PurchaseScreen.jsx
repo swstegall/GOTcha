@@ -48,7 +48,6 @@ const PurchaseScreen = (props) => {
             type={"outline"}
             raised
             buttonStyle={(styles.btnSize, styles.btnText)}
-            onPress={() => Alert.alert("Simple Button pressed")}
             icon={
               <Icon
                 name="credit-card"

@@ -1,9 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Overlay } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome5";
 import { CompletedButton } from "../../components/CircleButtons";
-import SC from "../../styles/StyleConstants";
 
 export const LeaderboardOverlay = (props) => {
   return (
@@ -36,6 +34,7 @@ export const LeaderboardOverlay = (props) => {
     </Overlay>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     height: "40%",

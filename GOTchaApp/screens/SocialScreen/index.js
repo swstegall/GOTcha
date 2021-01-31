@@ -3,7 +3,6 @@ import { View, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { CustomHeader as Header } from "../../components/CustomHeader";
-import { CustomFooter as Footer } from "../../components/CustomFooter";
 import ScreenStyle from "../../styles/ScreenStyle";
 import { FriendsListOverlay } from "./FriendsListOverlay";
 import { LeaderboardOverlay } from "./LeaderboardOverlay";
@@ -66,7 +65,7 @@ const SocialScreen = (props) => {
                   <Icon
                     name="trophy"
                     size={30}
-                    color="3f729b"
+                    color="#3f729b"
                     type="font-awesome"
                     style={styles.iconRight}
                   />
@@ -111,7 +110,7 @@ const SocialScreen = (props) => {
                   <Icon
                     name="comment-dots"
                     size={30}
-                    color="3f729b"
+                    color="#3f729b"
                     style={styles.iconRight}
                   />
                 }
@@ -140,8 +139,6 @@ const SocialScreen = (props) => {
               />
             </View>
           </View>
-
-          <Footer footerOptions={footerOptions} />
         </View>
       </View>
     </>
