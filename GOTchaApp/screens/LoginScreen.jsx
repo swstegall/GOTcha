@@ -4,7 +4,6 @@ import { Alert, Button, TextInput, View, StyleSheet } from "react-native";
 export default class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       username: "",
       password: "",
@@ -13,7 +12,6 @@ export default class App extends Component {
 
   onLogin() {
     const { username, password } = this.state;
-
     Alert.alert("Credentials", `${username} + ${password}`);
   }
 
@@ -33,7 +31,6 @@ export default class App extends Component {
           secureTextEntry={true}
           style={styles.input}
         />
-
         <Button
           title={"Login"}
           style={styles.input}
