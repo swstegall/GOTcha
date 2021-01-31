@@ -1,8 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Button } from "react-native-elements";
+import { View, Text, StyleSheet } from "react-native";
+import { Button, Divider } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { Divider } from "react-native-elements";
 import { CustomHeader as Header } from "../components/CustomHeader";
 import ScreenStyle from "../styles/ScreenStyle";
 
@@ -49,7 +48,6 @@ const PurchaseScreen = (props) => {
             type={"outline"}
             raised
             buttonStyle={(styles.btnSize, styles.btnText)}
-            onPress={() => Alert.alert("Simple Button pressed")}
             icon={
               <Icon
                 name="credit-card"
@@ -64,6 +62,7 @@ const PurchaseScreen = (props) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
