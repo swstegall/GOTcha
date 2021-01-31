@@ -35,7 +35,7 @@ export const login = async (req: Request, res: Response) => {
     )
   ) {
     res.send({
-      login: 'success',
+      success: true,
       token: jwt.sign(
         {
           id: currentUser.id,
@@ -51,7 +51,7 @@ export const login = async (req: Request, res: Response) => {
   } else {
     res
       .status(401)
-      .send({login: 'failed', error: 'Incorrect username or password'});
+      .send({success: false, error: 'Incorrect username or password'});
   }
 };
 
