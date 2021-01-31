@@ -8,22 +8,19 @@ export const FailureOverlay = (props) => {
   return (
     <Overlay
       isVisible={props.isVisible}
-      onBackdropPress={() => {
-        props.toggleOverlay(false);
-        props.setScannerVisible(false);
-      }}
+      onBackdropPress={() => props.toggleOverlay(false)}
       overlayStyle={styles.container}
     >
-      <View style={styles.titleContainer}>
+      <View>
         <Text style={styles.title}>Failure!</Text>
       </View>
-      <View style={styles.buttonContainer}>
+      <View>
+        <Text style={styles.body}>{props.message}</Text>
+      </View>
+      <View>
         <ResetScanButton
           color={SC.alternateColor2}
-          onPress={() => {
-            props.toggleOverlay(false);
-            props.setScannerVisible(false);
-          }}
+          onPress={() => props.toggleOverlay(false)}
           size={36}
         />
       </View>
@@ -38,14 +35,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  titleContainer: {
-    marginTop: "20%",
-  },
   title: {
     fontSize: 34,
     color: SC.dangerColor,
   },
-  buttonContainer: {
-    marginBottom: "20%",
-  },
+  body: {
+    fontSize: 14,
+  }
 });

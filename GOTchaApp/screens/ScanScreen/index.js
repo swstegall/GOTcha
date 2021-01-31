@@ -8,6 +8,7 @@ import { SuccessOverlay } from "./SuccessOverlay";
 import { FailureOverlay } from "./FailureOverlay";
 import { ScanButton } from "../../components/CircleButtons";
 import SC from "../../styles/StyleConstants";
+import { checkBarcode } from "../../util/ajax";
 
 const ScanScreen = (props) => {
   const [hasPermission, setHasPermission] = React.useState(null);
@@ -18,6 +19,7 @@ const ScanScreen = (props) => {
   const [failureOverlayVisible, setFailureOverlayVisible] = React.useState(
     false
   );
+  const [failureMessage, setFailureMessage] = React.useState("");
   const footerOptions = props.route.params;
 
   React.useEffect(() => {
@@ -27,10 +29,29 @@ const ScanScreen = (props) => {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ data }) => {
-    // Is this a valid barcode?
-    // setSuccessOverlayVisible(true);
-    setFailureOverlayVisible(true);
+  const handleBarCodeScanned = async ({ data }) => {
+    const result = await checkBarcode(data);
+    switch (result.code) {
+      case 0: {
+        setSuccessOverlayVisible(true);
+        break;
+      }
+      case 2: {
+        setFailureMessage(
+          "You have already scanned this code. Try a different code."
+        );
+        setFailureOverlayVisible(true);
+        break;
+      }
+      case 1:
+      default: {
+        setFailureMessage("This code doesn't win. Try a different code.");
+        setFailureOverlayVisible(true);
+        break;
+      }
+    }
+
+    setScannerVisible(false);
     // TODO: Give user some stamina on a successful scan.
   };
 
@@ -46,12 +67,11 @@ const ScanScreen = (props) => {
       <SuccessOverlay
         isVisible={successOverlayVisible}
         toggleOverlay={setSuccessOverlayVisible}
-        setScannerVisible={setScannerVisible}
       />
       <FailureOverlay
         isVisible={failureOverlayVisible}
+        message={failureMessage}
         toggleOverlay={setFailureOverlayVisible}
-        setScannerVisible={setScannerVisible}
       />
       <View style={ScreenStyle.container}>
         <Header navigation={props.navigation} title={"SCAN"} />
