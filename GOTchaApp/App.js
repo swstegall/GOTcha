@@ -36,7 +36,7 @@ export default function App() {
       const isAuthorized = await checkAuthorization();
       setAuthorized(isAuthorized);
     };
-    AsyncStorage.clear();
+    // AsyncStorage.clear();
     checkAuth();
   }, []);
 
