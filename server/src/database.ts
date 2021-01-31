@@ -63,6 +63,18 @@ const user = db.sequelize.define(
       allowNull: false,
       unique: true,
     },
+    emoji: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    staminaCurrent: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    staminaMax: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     experience: {
       type: DataTypes.INTEGER,
       allowNull: false,

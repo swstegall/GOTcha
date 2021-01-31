@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { CustomHeader as Header } from "../../components/CustomHeader";
-import { CustomFooter as Footer } from "../../components/CustomFooter";
 import ScreenStyle from "../../styles/ScreenStyle";
 import { SuccessOverlay } from "./SuccessOverlay";
 import { FailureOverlay } from "./FailureOverlay";
@@ -20,7 +19,6 @@ const ScanScreen = (props) => {
     false
   );
   const [failureMessage, setFailureMessage] = React.useState("");
-  const footerOptions = props.route.params;
 
   React.useEffect(() => {
     (async () => {
@@ -101,7 +99,6 @@ const ScanScreen = (props) => {
             </View>
           </View>
         )}
-        <Footer footerOptions={footerOptions} />
       </View>
     </>
   );
