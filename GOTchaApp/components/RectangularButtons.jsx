@@ -70,3 +70,16 @@ export const AddFriendButton = (props) => {
     />
   );
 };
+export const PaymentConfirmationButton = (props) => {
+  return (
+    <Icon
+      reverse
+      type="font-awesome"
+      name="credit-card"
+      color={props.color}
+      onPress={props.onPress}
+      underlayColor={"#DDDDDD"}
+      size={props.size}
+    />
+  );
+};
