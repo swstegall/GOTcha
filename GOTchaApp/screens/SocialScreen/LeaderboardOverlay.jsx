@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Overlay } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome5";
 import { CompletedButton } from "../../components/CircleButtons";
 import SC from "../../styles/StyleConstants";
-
 
 export const LeaderboardOverlay = (props) => {
   return (
@@ -15,7 +15,14 @@ export const LeaderboardOverlay = (props) => {
       overlayStyle={styles.container}
     >
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Leaderboard</Text>
+        <Text style={styles.title}>Leader board</Text>
+      </View>
+      <View style={{ justifyContent: "centered" }}>
+        <Text>🥇1st place --- NAME</Text>
+        <Text>🥈deal2nd place --- NAME</Text>
+        <Text>🥉3st place --- NAME</Text>
+        <Text>4th place --- NAME</Text>
+        <Text>5th place --- NAME</Text>
       </View>
       <View style={styles.buttonContainer}>
         <CompletedButton
@@ -29,7 +36,6 @@ export const LeaderboardOverlay = (props) => {
     </Overlay>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     height: "40%",
@@ -46,5 +52,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginBottom: "20%",
+  },
+  icon: {
+    alignItems: "center",
   },
 });

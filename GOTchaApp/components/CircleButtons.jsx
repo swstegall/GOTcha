@@ -57,3 +57,17 @@ export const CompletedButton = (props) => {
     />
   );
 };
+
+export const NewMessageButton = (props) => {
+  return (
+    <Icon
+      reverse
+      type="font-awesome"
+      name="plus-circle"
+      color={props.color}
+      onPress={props.onPress}
+      underlayColor={"#DDDDDD"}
+      size={props.size}
+    />
+  );
+};

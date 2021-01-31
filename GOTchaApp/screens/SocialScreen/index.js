@@ -67,6 +67,7 @@ const SocialScreen = (props) => {
                     name="trophy"
                     size={30}
                     color="3f729b"
+                    type="font-awesome"
                     style={styles.iconRight}
                   />
                 }

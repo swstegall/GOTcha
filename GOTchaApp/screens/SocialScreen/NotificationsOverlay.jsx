@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Overlay } from "react-native-elements";
+import { PricingCard } from 'react-native-elements';
 import { CompletedButton } from "../../components/CircleButtons";
 import SC from "../../styles/StyleConstants";
 
@@ -15,6 +16,9 @@ export const NotificationsOverlay = (props) => {
     >
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Notifications</Text>
+      </View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.body}>There are no new notifications at the moment.</Text>
       </View>
       <View style={styles.buttonContainer}>
         <CompletedButton
@@ -38,6 +42,9 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     marginTop: "20%",
+  },
+  body: {
+    justifyContent: "center",
   },
   title: {
     fontSize: 34,

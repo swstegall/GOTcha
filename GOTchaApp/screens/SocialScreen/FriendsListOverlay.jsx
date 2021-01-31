@@ -3,6 +3,8 @@ import { View, Text, StyleSheet } from "react-native";
 import { Overlay } from "react-native-elements";
 import { CompletedButton } from "../../components/CircleButtons";
 import SC from "../../styles/StyleConstants";
+import { AddFriendButton } from "../../components/RectangularButtons";
+
 
 export const FriendsListOverlay = (props) => {
   return (
@@ -15,6 +17,15 @@ export const FriendsListOverlay = (props) => {
     >
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Friends List</Text>
+      </View>
+      <View style={styles.addFriend}>
+        < AddFriendButton
+          color={"#4682B4"}
+          onPress={() => {
+            props.toggleOverlay(false);
+          }}
+          size={20}
+        />
       </View>
       <View style={styles.buttonContainer}>
         <CompletedButton
@@ -46,4 +57,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginBottom: "20%",
   },
+  addFriend: {
+    position: 'absolute',
+    right: 5,
+    top: 5,
+    justifyContent: "space-around"
+},
 });

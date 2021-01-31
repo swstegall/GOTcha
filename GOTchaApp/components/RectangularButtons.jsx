@@ -38,13 +38,12 @@ export const RegisterUserButton = (props) => {
     />
   );
 };
-
-export const NewMessageButton = (props) => {
+export const AddFriendButton = (props) => {
   return (
     <Icon
       reverse
-      type="font-awesome5"
-      name="check-circle"
+      type="font-awesome"
+      name="user-plus"
       color={props.color}
       onPress={props.onPress}
       underlayColor={"#DDDDDD"}
