@@ -7,8 +7,8 @@ import { getUserInfo } from "../util/ajax";
 
 const HomeScreen = (props) => {
   const [playerParams, setPlayerParams] = React.useState({
-    name: "Sam",
-    creature: "😎",
+    name: "",
+    creature: "",
     level: 1,
     experience: 0,
     stamina: 0,
@@ -28,14 +28,14 @@ const HomeScreen = (props) => {
       setPlayerParams({
         name: username,
         creature: emoji,
-        level: experience / 100 < 1 ? 1 : experience / 100,
+        level: experience / 100 < 1 ? 1 : (experience / 100) + 1,
         experience,
         stamina: staminaCurrent,
         maxStamina: staminaMax,
       });
     }
     userInfo();
-  }, []);
+  });
 
   return (
     <View style={ScreenStyle.container}>
