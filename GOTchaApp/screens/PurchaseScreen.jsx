@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { Divider } from "react-native-elements";
 import { CustomHeader as Header } from "../components/CustomHeader";
 import ScreenStyle from "../styles/ScreenStyle";
 
@@ -64,6 +63,7 @@ const PurchaseScreen = (props) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
