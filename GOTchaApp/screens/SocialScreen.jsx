@@ -1,41 +1,17 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { ListItem, Icon } from "react-native-elements";
+import { Text, View, StyleSheet } from "react-native";
 import { CustomHeader as Header } from "../components/CustomHeader";
 import ScreenStyle from "../styles/ScreenStyle";
 
 const SocialScreen = (props) => {
-  const list = [
-    {
-      title: "Leaderboard",
-      icon: "star",
-    },
-    {
-      title: "Friends",
-      icon: "person",
-    },
-    {
-      title: "Notifications",
-      icon: "mail",
-    },
-  ];
+  const footerOptions = props.route.params;
+
 
   return (
     <View style={ScreenStyle.container}>
       <Header navigation={props.navigation} title={"SOCIAL"} />
-      <View style={styles.container}>
-        <View style={styles.ListItem}>
-          {list.map((item, i) => (
-            <ListItem key={i} bottomDivider>
-              <Icon name={item.icon} />
-              <ListItem.Content>
-                <ListItem.Title>{item.title}</ListItem.Title>
-              </ListItem.Content>
-              <ListItem.Chevron />
-            </ListItem>
-          ))}
-        </View>
-      </View>
+      <Text>test</Text>      
+      <Footer footerOptions={footerOptions} />
     </View>
   );
 };
@@ -53,7 +29,11 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 10,
     justifyContent: "center",
+    fontSize: 40,
   },
+  text: {
+    fontWeight: "bold",
+  }
 });
 
 export default SocialScreen;
