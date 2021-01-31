@@ -4,6 +4,7 @@ import express, {NextFunction, Response, Request} from 'express';
 import {addUser} from './routes/addUser';
 import {authTest} from './routes/authTest';
 import {login, verifyToken} from './routes/login';
+import {checkBarcode} from './routes/checkBarcode';
 
 const serverPort = process.env.REACT_APP_SERVER_PORT || '';
 export const environment: string = process.env.ENVIRONMENT || '';
@@ -44,6 +45,7 @@ app.use((req, res, next) => {
       id: string;
       username: string;
     };
+    req.headers.id = verifiedToken.id;
     req.headers.username = verifiedToken.username;
   } catch (err) {
     res.status(401).send(err.toString());
@@ -55,6 +57,7 @@ app.use((req, res, next) => {
 app.post('/login', login);
 app.post('/addUser', addUser);
 app.post('/authTest', authTest);
+app.post('/checkBarcode', checkBarcode);
 
 const server = app.listen(serverPort);
 const gracefulShutdown = () => {

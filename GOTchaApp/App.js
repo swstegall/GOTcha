@@ -9,7 +9,6 @@ import PurchaseScreen from "./screens/PurchaseScreen";
 import SocialScreen from "./screens/SocialScreen";
 import LoginScreen from "./screens/LoginScreen";
 import { checkAuthorization } from "./util/authorization";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Drawer = createDrawerNavigator();
 
@@ -36,7 +35,6 @@ export default function App() {
       const isAuthorized = await checkAuthorization();
       setAuthorized(isAuthorized);
     };
-    // AsyncStorage.clear();
     checkAuth();
   }, []);
 

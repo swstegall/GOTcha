@@ -78,10 +78,41 @@ const user = db.sequelize.define(
   }
 );
 
+const scan = db.sequelize.define(
+  'scan',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
+    userId: {
+      type: DataTypes.UUIDV4,
+      allowNull: false,
+    },
+    code: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    deletedAt: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  },
+  {
+    tableName: 'scan',
+    timestamps: true,
+  }
+);
+
 credential.belongsTo(user, {foreignKey: 'id'});
 user.hasOne(credential, {foreignKey: 'id'});
+scan.belongsTo(user, {foreignKey: 'id'});
+user.hasMany(scan, {foreignKey: 'userId'});
 
 db.credential = credential;
 db.user = user;
+db.scan = scan;
 
 export default db;

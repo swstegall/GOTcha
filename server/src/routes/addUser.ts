@@ -2,7 +2,6 @@ import {Request, Response} from 'express';
 import database from '../database';
 import {generatePassword} from './login';
 import {uuidv4} from '../../util/uuidv4';
-import db from '../database';
 
 let newUser: any;
 
@@ -41,13 +40,13 @@ export const addUser = async (req: Request, res: Response) => {
       .send({success: false, error: 'Username is already in use.'});
     return;
   }
-  db.user.create(newUser);
+  database.user.create(newUser);
   const newCredential: any = {
     id: userId,
     password: generatePassword(req.body.password as string),
     createdAt: date,
     updatedAt: date,
   };
-  db.credential.create(newCredential);
+  database.credential.create(newCredential);
   res.status(200).send({success: true});
 };
