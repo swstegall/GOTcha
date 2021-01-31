@@ -23,22 +23,37 @@ export const checkBarcode = async (req: Request, res: Response) => {
       attributes: ['id'],
     });
     if (existingScans.length !== undefined && existingScans.length > 0) {
-      res
-        .status(400)
-        .send({
-          success: false,
-          code: 2,
-          error: 'Barcode has already been scanned by this user',
-        });
+      res.status(400).send({
+        success: false,
+        code: 2,
+        error: 'Barcode has already been scanned by this user',
+      });
       return;
     }
+    const payload = await database.user.findOne({
+      where: {id},
+    });
+    const userValues = payload.dataValues;
+    const {experience} = userValues;
+    await database.user.update(
+      {
+        experience: experience + 50,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
     database.scan.create(newBarcode);
     res.status(200).send({success: true, code: 0});
     return;
   } else {
-    res
-      .status(400)
-      .send({success: false, code: 1, error: 'Barcode scanned is not a winner.'});
+    res.status(400).send({
+      success: false,
+      code: 1,
+      error: 'Barcode scanned is not a winner.',
+    });
     return;
   }
 };

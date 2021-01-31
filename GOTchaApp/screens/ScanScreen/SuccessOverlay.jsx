@@ -15,7 +15,7 @@ export const SuccessOverlay = (props) => {
         <Text style={styles.title}>Success!</Text>
       </View>
       <View>
-        <Text style={styles.body}>One stamina has been restored.</Text>
+        <Text style={styles.body}>You have gained 50 experience.</Text>
       </View>
       <View>
         <ResetScanButton
