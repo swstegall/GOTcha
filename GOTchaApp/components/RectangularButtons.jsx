@@ -21,6 +21,24 @@ export const CreateUserButton = (props) => {
   );
 };
 
+export const StartBattleButton = (props) => {
+  return (
+    <Button
+      title={"Start Battle"}
+      onPress={props.onPress}
+      icon={
+        <Icon
+          name="running"
+          type="font-awesome-5"
+          color={"#FFFFFF"}
+          size={28}
+          iconStyle={{ paddingRight: 5 }}
+        />
+      }
+    />
+  );
+};
+
 export const RegisterUserButton = (props) => {
   return (
     <Button
@@ -38,6 +56,7 @@ export const RegisterUserButton = (props) => {
     />
   );
 };
+
 export const AddFriendButton = (props) => {
   return (
     <Icon
