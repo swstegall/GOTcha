@@ -1,4 +1,10 @@
 
+server/build/
+
 server/node_modules/
 
+mocks.zip
+
 .env
+
+GOTchaApp/util/constants.js

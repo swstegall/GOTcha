@@ -16,7 +16,6 @@ const SocialScreen = (props) => {
   const [notificationsVisible, setNotificationsListVisible] = React.useState(
     false
   );
-  const footerOptions = props.route.params;
   return (
     <>
       <FriendsListOverlay
