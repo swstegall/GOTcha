@@ -9,64 +9,87 @@ import CardHand from "./CardHand";
 import { attackDef, skillDef } from "../../util/Definitions";
 import { StartBattleButton } from "../../components/RectangularButtons";
 
+// Terrible code ahead, be warned
 const BattleScreen = (props) => {
-  const defaultAttackState = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
+  const defaultAttackState = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+  const defaultFieldState = [ 
+    ["", "", "", ""],
+    ["", "", "", ""], 
+    ["", "", "", ""], 
+    ["", "", "", ""]
   ];
+  const defaultUserDeck = [    
+    [0, "King of Tigers", "🐅", 3, 2, 4, attackDef.any, skillDef.none],
+    [0, "King of Tigers", "🐅", 3, 2, 4, attackDef.any, skillDef.none],
+    [1, "Zombie","🧟", 1, 1, 1, attackDef.any, skillDef.none],
+    [2, "Zombie","🧟", 1, 1, 1, attackDef.any, skillDef.none],
+    [3, "Monkee","🙊", 2, 2, 3, attackDef.any, skillDef.none],
+    [4, "Sus","👺", 6, 1, 2, attackDef.any, skillDef.none],
+    [4, "Sus","👺", 6, 1, 2, attackDef.any, skillDef.none],
+    [5, "Spooki","👻", 1, 6, 1, attackDef.any, skillDef.none]];
+  const defaultOpponentDeck = [    
+    [0, "King of Tigers", "🐅", 3, 2, 4, attackDef.any, skillDef.none],
+    [1, "Zombie","🧟", 1, 1, 1, attackDef.any, skillDef.none],
+    [1, "Zombie","🧟", 1, 1, 1, attackDef.any, skillDef.none],
+    [2, "Zombie","🧟", 1, 1, 1, attackDef.any, skillDef.none],
+    [3, "Monkee","🙊", 2, 2, 3, attackDef.any, skillDef.none],
+    [4, "Sus","👺", 6, 1, 2, attackDef.any, skillDef.none],
+    [4, "Invader","👾", 2, 3, 2, attackDef.any, skillDef.none]];
   const enemyEmoji = ["👿", "🧐", "🤠", "🧑‍", "🎅", "🧘"];
 
   const [money, setMoney] = useState(10);
-  const [health, setHealth] = useState(25);
+  const [health, setHealth] = useState(15);
   const [moneyPT] = useState(1);
   const [attackingSquare, setAttackingSquare] = useState(null);
 
-  const [opponentHealth, setOpponentHealth] = useState(25);
+  const [opponentHealth, setOpponentHealth] = useState(15);
   const [opponentMoney, setOpponentMoney] = useState(10);
   const [opponentHand, setOpponentHand] = useState([]);
   const [opponentEmoji, setOpponentEmoji] = useState();
-  const [opponentDeck, setOpponentDeck] = useState([
-    [0, "King of Tigers", "🐅", 3, 2, 4, attackDef.any, skillDef.none],
-    [1, "Zombie", "🧟", 1, 1, 1, attackDef.any, skillDef.none],
-    [1, "Zombie", "🧟", 1, 1, 1, attackDef.any, skillDef.none],
-    [2, "Zombie", "🧟", 1, 1, 1, attackDef.any, skillDef.none],
-    [3, "Monkee", "🙊", 2, 2, 3, attackDef.any, skillDef.none],
-    [4, "Sus", "👺", 6, 1, 2, attackDef.any, skillDef.none],
-    [4, "Sus", "👺", 6, 1, 2, attackDef.any, skillDef.none],
-  ]);
+  const [opponentDeck, setOpponentDeck] = useState(defaultOpponentDeck);
   const [opponentMoneyPT] = useState(1);
   const [isBattle, setIsBattle] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
 
   const [isHumanTurn, setIsHumanTurn] = useState(true);
 
-  const [fieldPattern, setFieldPattern] = useState([
-    ["", "", "", ""],
-    ["", "", "", ""],
-    ["", "", "", ""],
-    ["", "", "", ""],
-  ]);
+  const [fieldPattern, setFieldPattern] = useState(defaultFieldState);
   const [attackState, setAttackState] = useState(defaultAttackState);
 
   const [hand, setHand] = useState([]);
   //ID, name, emoji, attack, defense, cost
-  const [deck, setDeck] = useState([
-    [0, "King of Tigers", "🐅", 3, 2, 4, attackDef.any, skillDef.none],
-    [0, "King of Tigers", "🐅", 3, 2, 4, attackDef.any, skillDef.none],
-    [1, "Zombie", "🧟", 1, 1, 1, attackDef.any, skillDef.none],
-    [2, "Zombie", "🧟", 1, 1, 1, attackDef.any, skillDef.none],
-    [3, "Monkee", "🙊", 2, 2, 3, attackDef.any, skillDef.none],
-    [4, "Sus", "👺", 6, 1, 2, attackDef.any, skillDef.none],
-    [5, "Spooki", "👻", 1, 6, 1, attackDef.any, skillDef.none],
-  ]);
+  const [deck, setDeck] = useState(defaultUserDeck);
   const [deckShuffled, setDeckShuffled] = useState(false);
 
   const fieldInformation = {
     fieldPattern,
     attackState,
   };
+
+  const resetBattle = () => {
+    setMoney(10);
+    setHealth(15);
+    setAttackingSquare(null);
+
+    setOpponentHealth(15);
+    setOpponentMoney(10);
+    setOpponentHand([]);
+    setOpponentEmoji();
+    setOpponentDeck(defaultOpponentDeck);
+    setSelectedCard(null);
+
+    setIsHumanTurn(true);
+
+    setFieldPattern(defaultFieldState);
+    setAttackState(defaultAttackState);
+
+    setHand([]);
+  //ID, name, emoji, attack, defense, cost
+    setDeck(defaultUserDeck);
+    setDeckShuffled(false);
+
+    setIsBattle(false);
+  }
 
   useEffect(() => {
     if (!deckShuffled) {
@@ -89,6 +112,7 @@ const BattleScreen = (props) => {
       //Randomized AI
       let cardsCanAfford = [];
 
+      console.log("OHand:", opponentHand)
       for (let i = 0; i < opponentHand.length; ++i) {
         let card = opponentHand[i][0];
         if (card[5] <= opponentMoney && cardsCanAfford.indexOf(card) === -1) {
@@ -97,8 +121,6 @@ const BattleScreen = (props) => {
       }
 
       //Select random card
-      let maxCard = Math.floor(Math.random() * 3);
-
       if (cardsCanAfford.length > 0) {
         let randomCardIndex = Math.floor(Math.random() * cardsCanAfford.length);
         let randomRow = Math.floor(Math.random() * 2);
@@ -171,8 +193,12 @@ const BattleScreen = (props) => {
         if (
           (deadDefenders === defenders.length && !attacked) ||
           defenders.length <= 0
-        )
+        ) {
           setHealth(health - attacker[0][3]);
+          if (health <= 0) {
+            resetBattle()
+          }
+        }
       }
 
       for (let d = 0; d < deadQueue.length; ++d) {
@@ -209,6 +235,7 @@ const BattleScreen = (props) => {
 
         if (opponentHealth <= 0) {
           //Win
+          resetBattle()
         }
       }
     }
@@ -322,11 +349,11 @@ const BattleScreen = (props) => {
       let tempHand = [...opponentHand];
       let tempDeck = [...opponentDeck];
 
-      let index = Math.floor(Math.random() * deck.length);
-
-      tempHand.push(tempDeck.splice(index, 1));
-
+      let index = Math.floor(Math.random() * opponentDeck.length);
+      let cardDrawn = tempDeck.splice(index, 1)
+      tempHand.push(cardDrawn);
       setOpponentDeck(tempDeck);
+
       setOpponentHand(tempHand);
     }
   };
