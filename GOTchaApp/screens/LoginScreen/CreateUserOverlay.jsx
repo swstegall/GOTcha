@@ -8,9 +8,10 @@ import { register } from "../../util/ajax";
 export const CreateUserOverlay = (props) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [emoji, setEmoji] = React.useState("");
 
   const registerUser = async () => {
-    await register(username, password);
+    await register(username, password, emoji);
     props.toggleOverlay();
   };
 
@@ -29,7 +30,7 @@ export const CreateUserOverlay = (props) => {
           onChangeText={setUsername}
           placeholder="Username"
           leftIcon={{
-            type: "font-awesome",
+            type: "font-awesome-5",
             color: SC.primaryColor,
             name: "user",
           }}
@@ -40,9 +41,19 @@ export const CreateUserOverlay = (props) => {
           placeholder="Password"
           secureTextEntry={true}
           leftIcon={{
-            type: "font-awesome",
+            type: "font-awesome-5",
             color: SC.primaryColor,
             name: "lock",
+          }}
+        />
+        <Input
+          value={emoji}
+          onChangeText={setEmoji}
+          placeholder="Creature Emoji"
+          leftIcon={{
+            type: "font-awesome-5",
+            color: SC.primaryColor,
+            name: "smile-wink",
           }}
         />
       </View>

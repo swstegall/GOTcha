@@ -2,12 +2,9 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { ListItem, Icon } from "react-native-elements";
 import { CustomHeader as Header } from "../components/CustomHeader";
-import { CustomFooter as Footer } from "../components/CustomFooter";
 import ScreenStyle from "../styles/ScreenStyle";
 
 const SocialScreen = (props) => {
-  const footerOptions = props.route.params;
-
   const list = [
     {
       title: "Leaderboard",
@@ -26,18 +23,19 @@ const SocialScreen = (props) => {
   return (
     <View style={ScreenStyle.container}>
       <Header navigation={props.navigation} title={"SOCIAL"} />
-      <View style={styles.ListItem}>
-        {list.map((item, i) => (
-          <ListItem key={i} bottomDivider>
-            <Icon name={item.icon} />
-            <ListItem.Content>
-              <ListItem.Title>{item.title}</ListItem.Title>
-            </ListItem.Content>
-            <ListItem.Chevron />
-          </ListItem>
-        ))}
+      <View style={styles.container}>
+        <View style={styles.ListItem}>
+          {list.map((item, i) => (
+            <ListItem key={i} bottomDivider>
+              <Icon name={item.icon} />
+              <ListItem.Content>
+                <ListItem.Title>{item.title}</ListItem.Title>
+              </ListItem.Content>
+              <ListItem.Chevron />
+            </ListItem>
+          ))}
+        </View>
       </View>
-      <Footer footerOptions={footerOptions} />
     </View>
   );
 };

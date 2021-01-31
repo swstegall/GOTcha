@@ -1,7 +1,7 @@
 import C from "./constants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const register = async (username, password) => {
+export const register = async (username, password, emoji) => {
   try {
     const response = await fetch(`${C.localUrl}addUser`, {
       method: "POST",
@@ -12,6 +12,7 @@ export const register = async (username, password) => {
       body: JSON.stringify({
         username,
         password,
+        emoji,
       }),
     });
     const responseJson = await response.json();
@@ -55,6 +56,25 @@ export const checkBarcode = async (code) => {
       body: JSON.stringify({
         barcode: code,
       }),
+    });
+    const responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getUserInfo = async () => {
+  try {
+    const unformattedToken = await AsyncStorage.getItem("auth_token");
+    const token = `Bearer ${unformattedToken}`;
+    const response = await fetch(`${C.localUrl}getUserInfo`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        authorization: token,
+      },
     });
     const responseJson = await response.json();
     return responseJson;

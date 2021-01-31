@@ -4,17 +4,9 @@ import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Divider } from "react-native-elements";
 import { CustomHeader as Header } from "../components/CustomHeader";
-import { CustomFooter as Footer } from "../components/CustomFooter";
 import ScreenStyle from "../styles/ScreenStyle";
 
-const theme = {
-  Button: {
-    raised: true,
-  },
-};
-
 const PurchaseScreen = (props) => {
-  const footerOptions = props.route.params;
   return (
     <View style={ScreenStyle.container}>
       <Header navigation={props.navigation} title={"SHOP"} />
@@ -69,7 +61,6 @@ const PurchaseScreen = (props) => {
           />
         </View>
       </View>
-      <Footer footerOptions={footerOptions} />
     </View>
   );
 };

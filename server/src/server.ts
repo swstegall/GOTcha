@@ -2,9 +2,9 @@ require('dotenv').config({path: '../.env'});
 import bodyParser from 'body-parser';
 import express, {NextFunction, Response, Request} from 'express';
 import {addUser} from './routes/addUser';
-import {authTest} from './routes/authTest';
 import {login, verifyToken} from './routes/login';
 import {checkBarcode} from './routes/checkBarcode';
+import {getUserInfo} from './routes/getUserInfo';
 
 const serverPort = process.env.REACT_APP_SERVER_PORT || '';
 export const environment: string = process.env.ENVIRONMENT || '';
@@ -56,8 +56,8 @@ app.use((req, res, next) => {
 
 app.post('/login', login);
 app.post('/addUser', addUser);
-app.post('/authTest', authTest);
 app.post('/checkBarcode', checkBarcode);
+app.post('/getUserInfo', getUserInfo);
 
 const server = app.listen(serverPort);
 const gracefulShutdown = () => {

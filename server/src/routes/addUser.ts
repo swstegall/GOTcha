@@ -3,14 +3,15 @@ import database from '../database';
 import {generatePassword} from './login';
 import {uuidv4} from '../../util/uuidv4';
 
-let newUser: any;
-
 export const addUser = async (req: Request, res: Response) => {
   const date: string = new Date().toUTCString();
   const userId: string = uuidv4();
-  newUser = {
+  const newUser: any = {
     id: userId,
     username: req.body.username,
+    emoji: `${req.body.emoji}`,
+    staminaCurrent: 4,
+    staminaMax: 4,
     experience: 0,
     deletedAt: null,
     createdAt: date,
